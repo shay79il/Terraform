@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "finance" {
 }
 resource "aws_s3_object" "finance-2020" {
   key     = "finance-2020.doc"
-  content = "/root/finance/finance-2020.doc"
+  source = "/root/finance/finance-2020.doc"
   bucket  = aws_s3_bucket.finance.id
 }
 
