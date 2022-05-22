@@ -39,7 +39,7 @@ resource "local_file" "pet" {
   content         = "We love pets!"
   file_permission = "0700"
 
-  count = length(var.filename)
+  count = length(var.filename1)
 }
 
 variable "filename1" {
