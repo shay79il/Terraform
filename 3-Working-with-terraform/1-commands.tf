@@ -39,6 +39,13 @@
 #   which can be encrypted on S3 and one source of truth
 
 
+# terraform get
+###############
+# Get the relevant module which we want use and
+# which was specified in the 'module' block 
+# of our configuration
+
+
 
 # terraform graph
 #################
