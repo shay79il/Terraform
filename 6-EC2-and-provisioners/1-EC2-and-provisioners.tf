@@ -64,17 +64,20 @@ resource "aws_instance" "webserver" {
   # In order to save (e.g.) the public IP of the provisioned 
   # instance into a local file for later use
   provisioner "local-exec" {
-    when = destroy # optional to be excecuted JUST before 
-    # the resource is about to be destroied
-
     on_failure = continue # optional to continue the provisionning / desturction  
     # even if terraform encountered a failure on the following 
     # command (lets say we woter '/temp/ips.txt' insted of '/tmp/ips.txt')
     # Notic!
     # the default behaviour is 'fail' insted of 'continue'
 
-    command = "echo ${aws_instance.webserver2.public_ip} >> /tmp/ips.txt"
+    command = "echo ${aws_instance.webserver.public_ip} Created! >> /temp/ips.txt"
   }
+  provisioner "local-exec" {
+    when = destroy # optional to be excecuted JUST before 
+    # the resource is about to be destroied
+    command = "echo ${aws_instance.webserver2.public_ip} Destroyed! >> /tmp/ips.txt"
+  }
+
 
   ######################################################
   ######################################################
