@@ -39,11 +39,14 @@
 #   which can be encrypted on S3 and one source of truth
 
 
-# terraform apply [-auto-approve]
+# terraform apply [-auto-approve] [-replace="<resource_name>"]
 ##################################
 # Apply all changes / additions / destructions
-# The [-auto-approve] option is for us to skip 
-# the option to approve the apply command.
+# - The [-auto-approve] option is for us to skip 
+#   the option to approve the apply command.
+# - The [-replace="<resource_name>"] option is for 
+#   replacing a particular object even though 
+#   there are no configuration changes.
 
 
 # terraform get
