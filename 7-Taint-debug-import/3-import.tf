@@ -11,8 +11,10 @@ resource "aws_instance" "webserver-2" {
   # (resource arguments)
 }
 
-# run 'terraform show' to inspect all attributes 
-# to be copied into the EMPTY resource block 
-# we just previously configured
+# - run 'terraform show' 
 # OR 
-# look at the 'terraform.tfstate' file
+# - run 'terraform state show <resource-address>' 
+# OR 
+# - look at the 'terraform.tfstate' file
+# to inspect all its attributes to be copied 
+# into the EMPTY resource block we just previously configured
