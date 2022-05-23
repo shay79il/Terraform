@@ -4,6 +4,7 @@
 # - ERROR
 # - DEBUG
 # - TRACE
+# - JSON
 
 # Set the log level we need by the ENV variable TF_LOG
 # export TF_LOG=<log_level>
