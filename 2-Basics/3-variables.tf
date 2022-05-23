@@ -1,18 +1,32 @@
-# variables
-############
-# description - description of the variable
-# default - default value
-# type - [optional] if specified it enforces the type
-#       - string - in between ""
-#       - number - positive or negative
-#       - bool   - true / false
-#       - any    - by default 
-#       - list   - ["cat", "dog"] (each element is of the same type)
-#       - set    - ["cat", "dog"] (no duplicate elements)
-#       - map    - {pet1: cat, pet2: god}
-#       - object - Complex data struct
-#       - tuple  - list of different types
+# variables arguments
+######################
+# description   - description of the variable
+# sensitive     - Limits Terraform UI output when the variable is used in configuration
+# validation    - validation rules for a particular variable
+# default       - default value
+# type          - [optional] if specified it enforces the type
+#                   - string - in between ""
+#                   - number - positive or negative
+#                   - bool   - true / false
+#                   - any    - by default 
+#                   - list   - ["cat", "dog"] (each element is of the same type)
+#                   - set    - ["cat", "dog"] (no duplicate elements)
+#                   - map    - {pet1: cat, pet2: god}
+#                   - object - Complex data struct
+#                   - tuple  - list of different types
 #        
+
+# validation example 
+# for the aws ami varible
+variable "ami" {
+type = string
+description = "The id of the machine image (AMI) to use for the server."
+  validation {
+    condition = substr(var.ami, 0, 4) == "ami-"
+    error_message = "The AMI should start with \"ami-\"."
+  }
+}
+
 
 
 # string examples
@@ -41,6 +55,12 @@ variable "length" {
   default = [1, 2, 3]
   type = list(number)
 }
+
+# Usage of a list variable
+resource "random_pet" "cat" {
+  prefix = var.prefix[0]  
+  separator = "."
+}
 ################################################
 
 # map examples
@@ -61,6 +81,26 @@ variable "pet-count" {
     "goldfish"  = 2
   }
 }
+
+variable instance_type {
+  type = map
+  default = {
+    "production" = "m5.large"
+    "development"  = "t2.micro"
+  }
+}
+
+# Usage of a list variable
+############################
+resource "aws_instance" "prodcution" {
+  ami = var.ami
+  instance_type = var.instance_type["development"]
+  tags = {
+    name = var.servers[0]
+  }
+}
+
+
 ################################################
 
 # set examples
@@ -96,11 +136,11 @@ variable "bella" {
     favorit_pet = bool
   })
   default = {
-    name = bella
-    color = brown
+    name = "bella"
+    color = "brown"
     age = 7
     food = ["fish","chicken", "turkey"]
-    favorit_pet = bool
+    favorit_pet = true
   }
 }
 
