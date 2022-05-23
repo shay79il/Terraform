@@ -20,10 +20,12 @@
 # Common configuration filenames
 ###################################
 
-# File Name       Purpose
-# #########       #######
-# main.tf         Main configuration file containing resource definition
-# variables.tf    Contains variable declarations
-# outputs.tf      Contains outputs from resources
-# provider.tf     Contains Provider definition
+# File Name           Purpose
+# #########           #######
+# main.tf             Main configuration file containing resource definition
+# variables.tf        Contains variable declarations
+# variables.tfvars    Contains variable defaults
+# outputs.tf          Contains outputs from resources
+# provider.tf         Contains Provider definition
+# terraform.tf        Configure Terraform behaviour
 
