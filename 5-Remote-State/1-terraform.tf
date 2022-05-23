@@ -5,14 +5,14 @@
 # this should be done by running the 'terraform init' FIRST
 
 
-# terraform {
-#   backend "s3" {
-#     bucket         = "kodekloud-terraform-state-bucket01"
-#     key            = "finance/terraform.tfstate"
-#     region         = "us-west-1"
-#     dynamodb_table = "state-locking"
-#   }
-# }
+terraform {
+  backend "s3" {
+    bucket         = "kodekloud-terraform-state-bucket01"
+    key            = "finance/terraform.tfstate"
+    region         = "us-west-1"
+    dynamodb_table = "state-locking" # [optional]
+  }
+}
 
 
 # Terraform State Commands
@@ -22,9 +22,22 @@
 #   - show
 #   - mv
 #   - pull
+#   - push
 #   - rm
 
+###########################################
+# terraform state list [options] [address]
+###########################################
+# lists all the resources which had been provisioned
 
+# e.g.
+# ####
+# aws_dynamodb_table.cars
+# aws_s3_bucket.finance-2020922
+
+
+
+###############################
 # terraform state show command
 ###############################
 # terraform state show aws_s3_bucket.finance-2020922
@@ -50,6 +63,7 @@ resource "aws_s3_bucket" "terraform-state" {
 
 
 
+############################
 # terraform state mv command
 ############################
 # terraform state mv [options] SOURCE  DESTINATION
@@ -82,13 +96,20 @@ resource "aws_dynamodb_table" "state-locking" {
 }
 
 
+###############################
 # terraform state pull 
 ###############################
 # get the terraform REMOTE state file in order to query 
 # e.g.
 # terraform state pull | jq '.resources[] | select(.name  == "state-locking-db")|.instances[].attributes.hash_key'
 
+###############################
+# terraform state push [-force]
+###############################
+# Push the LOCLA terraform.tfstate to the REMOTE backend 
+# Use with EXTREM cation - it can break everything
 
+###############################
 # terraform state rm ADDRESS
 ###############################
 # remove items for the state file so that 
