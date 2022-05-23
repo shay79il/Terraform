@@ -39,6 +39,13 @@
 #   which can be encrypted on S3 and one source of truth
 
 
+# terraform apply [-auto-approve]
+##################################
+# Apply all changes / additions / destructions
+# The [-auto-approve] option is for us to skip 
+# the option to approve the apply command.
+
+
 # terraform get
 ###############
 # Get the relevant module which we want use and
