@@ -40,7 +40,7 @@ resource "aws_instance" "webserver" {
   }
   connection {
     type        = "ssh"
-    host        = self.publioc_ip
+    host        = self.public_ip
     user        = "ubuntu"
     private_key = file("/root/.ssh/web")
   }
