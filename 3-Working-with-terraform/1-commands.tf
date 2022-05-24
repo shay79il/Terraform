@@ -49,11 +49,15 @@
 #   there are no configuration changes.
 
 
-# terraform get
+# terraform get [version]
 ###############
 # Get the relevant module which we want use and
 # which was specified in the 'module' block 
 # of our configuration
+# In order to get a spesific version 
+# look at
+# https://github.com/terraform-aws-modules/terraform-aws-security-group/tree/master/modules/ssh
+# on the the 'Tags' history
 
 
 
