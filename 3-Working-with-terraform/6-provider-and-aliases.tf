@@ -17,7 +17,7 @@ resource "aws_key_pair" "beta" {
   key_name = "beta"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD3.........beta@b-server"
   
-  # provider = <provider_name>.<alias_name>aws.central
+  # provider = <provider_name>.<alias_name> ==> aws.central
   provider = aws.central
 }
 
